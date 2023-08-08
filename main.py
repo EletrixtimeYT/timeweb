@@ -1,4 +1,6 @@
 import os
+if not os.path.exists("public"):
+    os.makedirs("public")
 os.system("pip install requests")
 import requests
 def download_file(url, local_filename):
@@ -48,8 +50,7 @@ if not os.path.exists("dontremoveme.txt"):
     download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
     os.system("pip install tempoary/dashboard.whl")
     print("2/5 Creating templates folder")
-    if not os.path.exists("public"):
-        os.makedirs("public")
+
     print("3/5 Creating config folder")
     if not os.path.exists("config"):
         os.makedirs("config")
