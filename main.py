@@ -20,6 +20,7 @@ if not os.path.exists("dontremoveme.txt"):
     os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
     os.system("pip install requests")
     os.system("pip install pyyaml")
+    import requests
     with open("dontremoveme.txt", "w") as txt:
         txt.write("Dont remove me.\n")
         txt.write("You can remove me for an update!\n")
