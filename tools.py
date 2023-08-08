@@ -1,6 +1,7 @@
 import os
-
+import time
 os.system("pip install pyyaml requests")
+time.sleep(0.5)
 import yaml
 import requests
 import shutil
