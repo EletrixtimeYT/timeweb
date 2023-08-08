@@ -68,11 +68,11 @@ def download_file(url, local_filename):
     with open("public/index.html", "w", encoding="utf-8") as f:
         f.write(response.text)
     
-    download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
-    os.system("pip install temp/dashboard.whl")
+
 
 print("4/5 Finishing something...")
-
+download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
+os.system("pip install temp/dashboard.whl")
 print("5/5 Starting...")
 print("NOTE: Put HTML files in the templates folder!")
 
