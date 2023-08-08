@@ -1,9 +1,11 @@
 import os
+import time
 os.system("pip install pyyaml")
+time.sleep(0.5)
 import yaml
 import config
 print("TimeWeb starting...")
-
+os.system("python tools.py --upgrade")
 def is_file_allowed(filename):
     exception_path = "config/exception.yaml"
     if os.path.exists(exception_path):
