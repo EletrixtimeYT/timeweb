@@ -1,7 +1,20 @@
 import os
+os.system("pip install requests")
+import requests
+def download_file(url, local_filename):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(local_filename, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print("Téléchargement terminé :", local_filename)
+    else:
+        print("Erreur lors du téléchargement :", response.status_code)
 os.system("pip install pyyaml")
 if not os.path.exists("tempoary"):
     os.makedirs("tempoary")
+download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
+os.system("pip install tempoary/dashboard.whl")
 import yaml
 import config
 print("TimeWeb starting...")
@@ -27,18 +40,10 @@ if not os.path.exists("dontremoveme.txt"):
     print("1/5 Installing required packages")
     os.system("pip install flask")
     #os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
-    os.system("pip install requests")
+    
     os.system("pip install pyyaml")
     import requests
-def download_file(url, local_filename):
-    response = requests.get(url, stream=True)
-    if response.status_code == 200:
-        with open(local_filename, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=8192):
-                file.write(chunk)
-        print("Téléchargement terminé :", local_filename)
-    else:
-        print("Erreur lors du téléchargement :", response.status_code)
+
  
     download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
     os.system("pip install tempoary/dashboard.whl")
