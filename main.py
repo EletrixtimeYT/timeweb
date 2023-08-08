@@ -13,7 +13,7 @@ def download_file(url, local_filename):
 os.system("pip install pyyaml")
 if not os.path.exists("tempoary"):
     os.makedirs("tempoary")
-download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
+download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "tempoary/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
 os.system("pip install tempoary/dashboard.whl")
 import yaml
 import config
