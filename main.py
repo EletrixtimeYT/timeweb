@@ -1,7 +1,9 @@
 import os
+os.system("pip install pyyaml")
 import yaml
 import config
 print("TimeWeb starting...")
+os.system("python tools.py --upgrade")
 def is_file_allowed(filename):
     exception_path = "config/exception.yaml"
     if os.path.exists(exception_path):
@@ -20,7 +22,7 @@ if not os.path.exists("dontremoveme.txt"):
     os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
     os.system("pip install requests")
     os.system("pip install pyyaml")
-    import requests
+    
     with open("dontremoveme.txt", "w") as txt:
         txt.write("Dont remove me.\n")
         txt.write("You can remove me for an update!\n")
