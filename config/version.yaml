@@ -1,0 +1,12 @@
+version: 1.0
+
+
+update_files:
+  - main.py
+  - public/index.html
+  - setup.py
+update_commands:
+  - pip install requests
+
+
+  

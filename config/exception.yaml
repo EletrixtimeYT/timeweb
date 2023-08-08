@@ -1,0 +1,22 @@
+# List of files that are not allowed to be accessed
+
+
+            #==========================================
+
+            #DONT REMOVE IS FOR SAFETY OF THE SERVER
+
+            - flask_monitoringdashboard.db
+
+            - main.py
+
+            - config/exception.yaml
+
+
+            #==========================================
+
+            #Your can add your rules here !
+
+
+            #- filename.txt
+
+            
