@@ -22,7 +22,7 @@ if not os.path.exists("dontremoveme.txt"):
     os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
     os.system("pip install requests")
     os.system("pip install pyyaml")
-    
+    import requests
     with open("dontremoveme.txt", "w") as txt:
         txt.write("Dont remove me.\n")
         txt.write("You can remove me for an update!\n")
@@ -51,6 +51,7 @@ if not os.path.exists("dontremoveme.txt"):
 
 #- filename.txt\n
 """
+
             exception_file.write(temp1)
     response = requests.get("https://raw.githubusercontent.com/EletrixTimeYT/TimeWeb/main/public/index.html")
     response.raise_for_status()
