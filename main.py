@@ -37,6 +37,8 @@ def download_file(url, local_filename):
         print("Téléchargement terminé :", local_filename)
     else:
         print("Erreur lors du téléchargement :", response.status_code)
+    if not os.path.exists("temp"):
+        os.makedirs("temp")
     download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
     os.system("pip install temp/dashboard.whl")
     print("2/5 Creating templates folder")
@@ -45,8 +47,7 @@ def download_file(url, local_filename):
     print("3/5 Creating config folder")
     if not os.path.exists("config"):
         os.makedirs("config")
-    if not os.path.exists("temp"):
-        os.makedirs("temp")
+   
         # Créer le fichier exception.yaml s'il n'existe pas
     exception_path = "config/exception.yaml"
     if not os.path.exists(exception_path):
