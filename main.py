@@ -1,7 +1,5 @@
 import os
-import time
 os.system("pip install pyyaml")
-time.sleep(0.5)
 import yaml
 import config
 print("TimeWeb starting...")
@@ -21,10 +19,18 @@ if not os.path.exists("dontremoveme.txt"):
     print("===========")
     print("1/5 Installing required packages")
     os.system("pip install flask")
-    os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
+    #os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
     os.system("pip install requests")
     os.system("pip install pyyaml")
-    import requests
+def download_file(url, local_filename):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(local_filename, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print("Téléchargement terminé :", local_filename)
+    else:
+        print("Erreur lors du téléchargement :", response.status_code)
     with open("dontremoveme.txt", "w") as txt:
         txt.write("Dont remove me.\n")
         txt.write("You can remove me for an update!\n")
@@ -34,11 +40,14 @@ if not os.path.exists("dontremoveme.txt"):
     print("3/5 Creating config folder")
     if not os.path.exists("config"):
         os.makedirs("config")
+    if not os.path.exists("temp"):
+        os.makedirs("temp")
         # Créer le fichier exception.yaml s'il n'existe pas
     exception_path = "config/exception.yaml"
     if not os.path.exists(exception_path):
         with open(exception_path, "w") as exception_file:
             temp1 = """
+            
 
 # List of files that are not allowed to be accessed\n
 
@@ -53,15 +62,14 @@ if not os.path.exists("dontremoveme.txt"):
 
 #- filename.txt\n
 """
-
-            exception_file.write(temp1)
+    exception_file.write(temp1)
     response = requests.get("https://raw.githubusercontent.com/EletrixTimeYT/TimeWeb/main/public/index.html")
     response.raise_for_status()
     with open("public/index.html", "w", encoding="utf-8") as f:
         f.write(response.text)
-   
-else:
-    print("1/5 Required packages already installed")
+    
+        download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
+
 
 print("4/5 Finishing something...")
 
@@ -86,4 +94,5 @@ def index():
     return send_file("public/index.html")
 
 if __name__ == '__main__':
-    app.run(port=config.port)
+    app.run(host='0.0.0.0', port=config.port)
+
