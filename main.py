@@ -7,7 +7,7 @@ def download_file(url, local_filename):
         with open(local_filename, 'wb') as file:
             for chunk in response.iter_content(chunk_size=8192):
                 file.write(chunk)
-        print("Téléchargement terminé :", local_filename)
+        print("Download OK :", local_filename)
     else:
         print("Erreur lors du téléchargement :", response.status_code)
 os.system("pip install pyyaml")
