@@ -1,11 +1,9 @@
 version: 2.0
-
-
 update_files:
   - main.py
-
+  - version.yaml
+  - config.py
+update_libs:
+  - requests
 update_commands:
-  - pip install requests
-
-
-  
+  - echo "Update complete!"
