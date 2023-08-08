@@ -22,6 +22,7 @@ if not os.path.exists("dontremoveme.txt"):
     #os.system("pip install git+https://github.com/eletrixtimeyt/flask-monitoringdashboard")
     os.system("pip install requests")
     os.system("pip install pyyaml")
+    import requests
 def download_file(url, local_filename):
     response = requests.get(url, stream=True)
     if response.status_code == 200:
@@ -31,9 +32,7 @@ def download_file(url, local_filename):
         print("Téléchargement terminé :", local_filename)
     else:
         print("Erreur lors du téléchargement :", response.status_code)
-    with open("dontremoveme.txt", "w") as txt:
-        txt.write("Dont remove me.\n")
-        txt.write("You can remove me for an update!\n")
+
     print("2/5 Creating templates folder")
     if not os.path.exists("public"):
         os.makedirs("public")
@@ -67,12 +66,16 @@ def download_file(url, local_filename):
     response.raise_for_status()
     with open("public/index.html", "w", encoding="utf-8") as f:
         f.write(response.text)
-    
+    with open("dontremoveme.txt", "w") as txt:
+        txt.write("Dont remove me.\n")
+        txt.write("You can remove me for an update!\n")
+    download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
+    os.system("pip install temp/dashboard.whl")
+        
 
 
 print("4/5 Finishing something...")
-download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
-os.system("pip install temp/dashboard.whl")
+
 print("5/5 Starting...")
 print("NOTE: Put HTML files in the templates folder!")
 
