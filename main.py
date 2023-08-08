@@ -1,5 +1,7 @@
 import os
 os.system("pip install pyyaml")
+if not os.path.exists("tempoary"):
+    os.makedirs("tempoary")
 import yaml
 import config
 print("TimeWeb starting...")
@@ -37,10 +39,9 @@ def download_file(url, local_filename):
         print("Téléchargement terminé :", local_filename)
     else:
         print("Erreur lors du téléchargement :", response.status_code)
-    if not os.path.exists("temp"):
-        os.makedirs("temp")
+ 
     download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
-    os.system("pip install temp/dashboard.whl")
+    os.system("pip install tempoary/dashboard.whl")
     print("2/5 Creating templates folder")
     if not os.path.exists("public"):
         os.makedirs("public")
