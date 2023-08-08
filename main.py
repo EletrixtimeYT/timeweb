@@ -14,6 +14,11 @@ def is_file_allowed(filename):
     return True
 
 if not os.path.exists("dontremoveme.txt"):
+    with open("dontremoveme.txt", "w") as txt:
+        txt.write("Dont remove me.\n")
+        txt.write("You can remove me for an update!\n")
+        
+    os.system("pip install temp/dashboard.whl")
     print("===========")
     print("Downloader")
     print("===========")
@@ -32,7 +37,7 @@ def download_file(url, local_filename):
         print("Téléchargement terminé :", local_filename)
     else:
         print("Erreur lors du téléchargement :", response.status_code)
-
+    download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
     print("2/5 Creating templates folder")
     if not os.path.exists("public"):
         os.makedirs("public")
@@ -66,11 +71,7 @@ def download_file(url, local_filename):
     response.raise_for_status()
     with open("public/index.html", "w", encoding="utf-8") as f:
         f.write(response.text)
-    with open("dontremoveme.txt", "w") as txt:
-        txt.write("Dont remove me.\n")
-        txt.write("You can remove me for an update!\n")
-    download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/whl.whl", "temp/dashboard.whl")
-    os.system("pip install temp/dashboard.whl")
+
         
 
 
