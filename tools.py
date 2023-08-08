@@ -16,6 +16,7 @@ def get_local_version():
         return current_version
     return ""
 
+
 def update_local_version(new_version):
     version_path = "config/version.yaml"
     with open(version_path, "w") as version_file:
@@ -42,24 +43,28 @@ def install_files():
         except (requests.exceptions.RequestException, IOError):
             print(f"Unable to download {file} from GitHub.")
 
+
 def check_update(update_libs=False, install=False):
     current_version = get_local_version()
 
     github_url = "https://raw.githubusercontent.com/EletrixTimeYT/TimeWeb/main/version.yaml"  # Mettez à jour avec votre URL GitHub
-    try:
-        response = requests.get(github_url)
-        response.raise_for_status()
-        data = response.json()
-        github_version = data.get("version", "")
-        update_files = data.get("update_files", [])
-        update_libs_list = data.get("update_libs", [])
-        update_commands = data.get("update_commands", [])
-    except (requests.exceptions.RequestException, ValueError):
-        print("Unable to fetch version data from GitHub.")
-        return
+    
+    response = requests.get(github_url)
+    response.raise_for_status()
+    data = yaml.safe_load(response.text)  # Chargez les données depuis la réponse YAML
+
+    github_version = data.get("version", "")
+    update_files = data.get("update_files", [])
+    update_libs_list = data.get("update_libs", [])
+    update_commands = data.get("update_commands", [])
 
     if current_version != github_version:
         print("An update is available.")
+
+        # Supprimer les fichiers qui doivent être mis à jour
+        for file in update_files:
+            if os.path.exists(file):
+                os.remove(file)
 
         for file in update_files:
             download_url = f"https://raw.githubusercontent.com/EletrixTimeYT/TimeWeb/main/{file}"
@@ -71,6 +76,7 @@ def check_update(update_libs=False, install=False):
                     shutil.copyfileobj(response.raw, f)
             except (requests.exceptions.RequestException, IOError):
                 print(f"Unable to download {file} from GitHub.")
+
 
         if update_libs:
             print("Updating libraries...")
