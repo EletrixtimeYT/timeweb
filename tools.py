@@ -57,7 +57,7 @@ def installall():
         import requests
 
     
-        download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "temp/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
+        download_file("https://github.com/EletrixtimeYT/Flask-MonitoringDashboard/releases/download/lastest/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl", "tempoary/Flask_MonitoringDashboard-3.1.1-py3-none-any.whl")
         os.system("pip install tempoary/dashboard.whl")
         print("2/5 Creating templates folder")
 
