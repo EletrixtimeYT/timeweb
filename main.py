@@ -1,6 +1,7 @@
 import os
 import yaml
 import requests
+import config
 def is_file_allowed(filename):
     exception_path = "config/exception.yaml"
     if os.path.exists(exception_path):
